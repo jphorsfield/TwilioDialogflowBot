@@ -1,0 +1,29 @@
+{
+  "name": "vodadevbot",
+  "version": "1.0.0",
+  "private": "private",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "description": "Node.js|Express Vodafone Bot Demo",
+  "author": {
+    "name": "JP Horsfield",
+    "email": "johnpaul.horsfield@vodafone.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "apiai": "^4.0.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "date-and-time": "^0.5.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.14.1",
+    "express-session": "^1.15.6",
+    "fb-watchman": "^2.0.0",
+    "module-js": "^6.0.0",
+    "mongodb": "^2.2.33",
+    "request": "^2.83.0",
+    "sane": "^2.2.0",
+    "twilio": "^3.0.0"
+  }
+}

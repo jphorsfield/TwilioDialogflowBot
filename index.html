@@ -1,0 +1,104 @@
+<script src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/controller.js"></script>
+<script type="text/javascript" src="js/ngStorage.js"></script>
+<script type="text/javascript" src="js/base64.js"></script>
+
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="https://media.twiliocdn.com/sdk/js/chat/v1.0/twilio-chat.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/index.js"></script>
+
+
+<link href="css/chat.css" rel="stylesheet" />
+<body ng-app="chatApp" ng-controller="chatController">
+<table width="100%" border="0" height="100%" cellpadding="0" cellspacing="0" >
+  <tr>
+	<td class="header" align="center">
+		<table width="90%">
+		  <tr>
+			<td width="60"><img src="images/vodafone-logo.png" width="50" /></td>
+			<td align="left" class="title">Vodafone BOT</td>
+		  </tr>
+		</table>
+	</td>
+  </tr>
+  <tr>
+	<td class="powerBy">
+		<table width="98%">
+		  <tr>
+			<td class="powerByText">POWERED BY</td>
+			<td width="25" align="right"><img src="images/vodafone-logo.png" width="16" /></td>
+			<td class="powerByCompany" width="25" align="left">&nbsp;Vodafone</td>
+		  </tr>
+		</table>
+	</td>
+  </tr>
+  <tr>
+	<td class="chatBody" valign="bottom">
+		<div class="scrollDiv" id="scrollDiv" style="max-height:{{height}}px;">
+			<div ng-repeat="eachMessage in chats.message">
+			
+				<div class="talkWapper" ng-if="eachMessage.answer != undefined && sessionArray.indexOf(eachMessage.session) !=-1 ">
+					<div class="userSay talk">
+						{{eachMessage.answer}}
+					</div>
+					
+				</div>
+				<div class="talkWapper" ng-if="eachMessage.question != undefined  && sessionArray.indexOf(eachMessage.session) !=-1">
+					<div class="BOTSay talk">
+						{{eachMessage.question}}
+					</div>
+				</div>
+				<div class="talkWapper" ng-if="eachMessage.callBackAdded != undefined  && sessionArray.indexOf(eachMessage.session) !=-1">
+					<div class="userSay talk">
+						Call back initiated on {{eachMessage.callBackAdded}} to {{eachMessage.callBack}}<br>
+						Your callback Session ID is: {{eachMessage.base64Session}}
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="talkWapper" ng-if="connectingAgent != false">
+				<div class="userSay talk">
+					<img src="images/loading.gif" height="20" style="float:left"/>&nbsp;&nbsp;{{connectingAgent}}
+				</div>
+			</div>
+		</div>
+	</td>
+  </tr>
+  <tr>
+  	<form ng-submit="askQuestion();">
+		<td class="footer"> 
+			<input type="text" id="chat-input" class="textBox" ng-model="question" placeholder="Ask something..."/>
+		</td>
+	</form>
+  </tr>
+</table>
+
+<div class="modal fade" id="CallBack" role="dialog">
+	<form ng-submit="callBack();">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Call back on</h4>
+				</div>
+				<div class="modal-body">
+					<input type="text" ng-model="phone" class="form-control"/>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" ng-click="callBack();">Submit</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+</body>
+
+
